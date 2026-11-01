@@ -46,9 +46,12 @@ const areasToImproveList = document.getElementById('areasToImproveList');
 const analysisRecommendation = document.getElementById('analysisRecommendation');
 const suggestionButtons = document.querySelectorAll('.suggestion-pill');
 const apiBaseUrl = (() => {
-  const browserHost = window.location.hostname || '127.0.0.1';
-  const backendHost = browserHost === 'localhost' ? '127.0.0.1' : browserHost;
-  return `http://${backendHost}:8000`;
+  const configuredBaseUrl = import.meta.env.VITE_API_BASE_URL;
+  if (configuredBaseUrl && configuredBaseUrl.trim()) {
+    return configuredBaseUrl.replace(/\/$/, '');
+  }
+
+  return 'http://127.0.0.1:8000';
 })();
 const jdUploadUrl = `${apiBaseUrl}/analyze-jd`;
 
