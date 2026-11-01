@@ -1,0 +1,27 @@
+node_modules/
+dist/
+.venv/
+__pycache__/
+**/__pycache__/
+**pycache**/
+.env
+*.pyc
+
+# Environment files
+.env.*
+!.env.example
+
+# Python caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Vite
+.vite/
+
+# Logs and temporary files
+*.log
+.DS_Store
+Thumbs.db
+
+backend/temp_jd.docx

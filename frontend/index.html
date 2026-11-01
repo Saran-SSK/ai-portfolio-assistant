@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Saran S | AI Portfolio Assistant</title>
+    <meta
+      name="description"
+      content="Modern AI portfolio assistant for a software engineering student and candidate."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="bg-orb orb-one"></div>
+    <div class="bg-orb orb-two"></div>
+    <div class="bg-grid"></div>
+
+    <div class="app-shell">
+      <aside class="sidebar glass-panel scroll-panel">
+        <div class="brand-block">
+          <div class="brand-mark">SS</div>
+          <div>
+            <p class="eyebrow">Portfolio AI</p>
+            <h1>Saran S</h1>
+          </div>
+        </div>
+
+        <div class="profile-card">
+          <div class="avatar-wrap">
+            <div class="avatar">SS</div>
+          </div>
+          <div class="profile-copy">
+            <h2>Software Engineering Student</h2>
+            <p>Full-stack & AI systems</p>
+          </div>
+        </div>
+
+        <nav class="sidebar-nav" aria-label="Main navigation">
+          <button class="nav-item active" type="button" data-view="overview">
+            <span class="nav-icon">✦</span>
+            <span>Overview</span>
+          </button>
+          <button class="nav-item" type="button" data-view="experience-projects">
+            <span class="nav-icon">▣</span>
+            <span>Experience &amp; Projects</span>
+          </button>
+          <button class="nav-item" type="button" data-view="compatibility">
+            <span class="nav-icon">◎</span>
+            <span>Compatibility</span>
+          </button>
+          <button class="nav-item" type="button" data-view="skills">
+            <span class="nav-icon">✉</span>
+            <span>Skills</span>
+          </button>
+          <button class="nav-item" type="button" data-view="contact">
+            <span class="nav-icon">✦</span>
+            <span>Contact</span>
+          </button>
+        </nav>
+
+      </aside>
+
+      <main class="main-panel glass-panel">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow subtle">AI recruiter assistant</p>
+            <h2>Portfolio conversation</h2>
+          </div>
+
+          <div class="topbar-actions">
+            <button class="action-button secondary" id="downloadResume" type="button">
+              Download resume
+            </button>
+            <button class="action-button ghost" id="clearChat" type="button">
+              Clear chat
+            </button>
+          </div>
+        </header>
+
+        <div class="content-grid">
+          <section class="chat-panel scroll-panel" id="chatPanel">
+            <div class="chat-messages" id="chatMessages" aria-live="polite">
+              <div class="message-row assistant">
+                <div class="message-avatar">AI</div>
+                <div class="message-bubble">
+                  <p>
+                    Hi, I’m Saran’s portfolio assistant. I can tell you about his
+                    experience, projects, engineering strengths, and how well his
+                    profile aligns with a role. Ask me anything.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <form class="chat-input-form" id="chatForm">
+              <label class="input-shell" for="chatInput">
+                <span class="input-icon">✦</span>
+                <textarea
+                  id="chatInput"
+                  rows="1"
+                  placeholder="Ask about experience, skills, projects, or role fit..."
+                  autocomplete="off"
+                ></textarea>
+              </label>
+              <button class="send-button" type="submit" aria-label="Send message">
+                Send
+              </button>
+            </form>
+          </section>
+
+          <section class="content-page hidden" id="experienceProjectsPage" aria-live="polite">
+            <div class="page-grid">
+              <div class="page-section">
+                <h3>Professional Experience</h3>
+                <div id="experienceList" class="stack-list"></div>
+              </div>
+
+              <div class="page-section">
+                <h3>Featured Projects</h3>
+                <div id="projectList" class="stack-list"></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="content-page hidden" id="skillsPage" aria-live="polite">
+            <div id="skillsGrid" class="skills-grid"></div>
+          </section>
+
+          <section class="content-page hidden" id="contactPage" aria-live="polite">
+            <div class="contact-card" id="contactInfo"></div>
+          </section>
+
+          <section class="content-page hidden" id="detailPage" aria-live="polite">
+            <div class="detail-toolbar">
+              <button class="action-button ghost detail-back-button" id="detailBackButton" type="button">
+                ← Back
+              </button>
+            </div>
+
+            <div class="detail-shell">
+              <div class="detail-heading-block">
+                <p class="eyebrow subtle" id="detailEyebrow">Project detail</p>
+                <h2 id="detailTitle">Detail</h2>
+              </div>
+
+              <div class="detail-meta" id="detailMeta"></div>
+
+              <div class="detail-body">
+                <div class="detail-section">
+                  <h3>Overview</h3>
+                  <p id="detailDescription"></p>
+                </div>
+
+                <div class="detail-section">
+                  <h3>Technologies</h3>
+                  <div id="detailTags" class="tag-row"></div>
+                </div>
+
+                <div class="detail-section" id="detailExtraSection">
+                  <h3>Key highlights</h3>
+                  <ul id="detailList" class="report-list"></ul>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="compatibility-analysis-panel hidden" id="compatibilityPanel" aria-live="polite">
+            <div class="compatibility-report-header">
+              <div class="report-heading-block">
+                <p class="eyebrow subtle">Role match</p>
+                <h2 id="analysisTitle">Compatibility Analysis</h2>
+                <div class="analysis-meta" id="analysisMeta">Upload job description to do compatibility check.</div>
+              </div>
+
+              <div class="report-header-actions">
+                <button class="action-button ghost report-back-button" id="backToConversation" type="button">
+                  Back to Conversation
+                </button>
+              </div>
+            </div>
+
+            <div class="compatibility-report-body">
+              <div class="report-section">
+                <h3>Overall Assessment</h3>
+                <p id="analysisOverallAssessment">Upload a job description to generate a compatibility report.</p>
+              </div>
+
+              <div class="report-section">
+                <h3>Matching Skills</h3>
+                <div class="tag-list" id="matchingSkillsList"></div>
+              </div>
+
+              <div class="report-section">
+                <h3>Missing Required Skills</h3>
+                <div class="tag-list missing" id="missingSkillsList"></div>
+              </div>
+
+              <div class="report-section">
+                <h3>Preferred Skills Matched</h3>
+                <div class="tag-list" id="preferredSkillsList"></div>
+              </div>
+
+              <div class="report-section">
+                <h3>Relevant Experience</h3>
+                <ul class="report-list" id="relevantExperienceList"></ul>
+              </div>
+
+              <div class="report-section">
+                <h3>Relevant Projects</h3>
+                <ul class="report-list" id="relevantProjectsList"></ul>
+              </div>
+
+              <div class="report-section">
+                <h3>Strengths</h3>
+                <ul class="report-list" id="strengthsList"></ul>
+              </div>
+
+              <div class="report-section">
+                <h3>Areas to Improve</h3>
+                <ul class="report-list" id="areasToImproveList"></ul>
+              </div>
+
+              <div class="report-section recommendation">
+                <h3>Final Recommendation</h3>
+                <p id="analysisRecommendation">No recommendation yet.</p>
+              </div>
+            </div>
+          </section>
+
+          <aside class="insights-panel">
+            <div class="insight-card upload-card">
+              <div class="card-header">
+                <h3>Job description</h3>
+                <span class="chip success">Upload</span>
+              </div>
+
+              <label class="upload-box" for="jobDescriptionUpload">
+                <input id="jobDescriptionUpload" type="file" accept=".pdf,.doc,.docx" />
+                <span class="upload-icon">⇪</span>
+                <span id="fileLabel">Upload PDF or DOCX</span>
+              </label>
+
+              <p class="helper-text" id="uploadStatus">
+                Upload job description to do compatibility check.
+              </p>
+            </div>
+
+            <div class="insight-card compatibility-card scroll-panel">
+              <div class="card-header align-start">
+                <div>
+                  <p class="eyebrow subtle">Role match</p>
+                  <h3>Compatibility check</h3>
+                </div>
+                <span class="score-badge" id="matchScore">—</span>
+              </div>
+
+              <div class="match-overview compact">
+                <div class="score-ring compact-ring">
+                  <div class="score-ring-inner compact-inner">
+                    <strong id="scoreValue">0</strong>
+                    <small>%</small>
+                  </div>
+                </div>
+                <div class="match-summary compact-summary">
+                  <p class="summary-label">Overall fit</p>
+                  <p id="matchSummary">Upload a JD to generate a real compatibility result.</p>
+                </div>
+              </div>
+
+              <button id="moreDetailsButton" class="more-details-button" type="button" disabled>
+                More details
+              </button>
+            </div>
+          </aside>
+        </div>
+      </main>
+    </div>
+
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>
