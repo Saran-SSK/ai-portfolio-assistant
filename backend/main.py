@@ -31,6 +31,7 @@ app.add_middleware(
         "http://127.0.0.1:4173",
         "http://localhost:8001",
         "http://127.0.0.1:8001",
+        "https://ai-portfolio-assistant-theta.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
